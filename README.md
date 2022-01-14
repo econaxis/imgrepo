@@ -1,6 +1,8 @@
 # Shopify Developer Challenge - Image Repository
 
-Image repository which allows users to store, browse, delete, and search for images. [Video](fdsa)
+Image repository which allows users to store, browse, delete, and search for images. 
+
+[**Youtube Video**](https://youtu.be/wVyzkAw-C0s)
 
 ![image](start-0.png)
 
