@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Form</title>
+</head>
+<body>
+<h1>Upload:</h1>
+<form action='{{url_for("api.post_picture_web")}}' enctype="multipart/form-data" method="post">
+    <label for="file">Upload files: </label>
+    <input type="file" name="file" id="file" multiple>
+    <br>
+    <label for="flush-check">Automatically flush search index?</label>
+    <input type="checkbox" id="flush-check" name="flush">
+    <br>
+    <input type="submit">
+</form>
+
+<h1>Search:</h1>
+<form action="{{url_for('public.search_picture')}}" method="get" enctype="application/x-www-form-urlencoded">
+    <label for="query">Type your search query here</label>
+    <input type="text" id="query" name="query"/>
+    <br>
+    <input type="submit">
+</form>
+
+<h1>Get image by ID:</h1>
+<form action="{{url_for('api.img_data')}}" method="get" enctype="application/x-www-form-urlencoded">
+    <label for="image-id">ID of image to retrieve:</label>
+    <input type="number" id="image-id" name="id">
+    <input type="submit">
+</form>
+
+</body>
+</html>

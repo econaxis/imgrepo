@@ -1,0 +1,5 @@
+creds.py
+__pycache__
+.idea
+testfile/*
+glove.bin.*

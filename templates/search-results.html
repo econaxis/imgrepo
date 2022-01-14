@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+
+<h1 style="background-color: aliceblue; padding: 5px">My Images</h1>
+{% for imgurl in imgurls %}
+<a href="{{url_for('public.image_view', id = imgurl[0])}}"
+   style="display: inline-block; text-align: center; border: 1px solid dimgrey; ">
+    <img src="{{url_for('api.img_data', id = imgurl[0])}}" alt="Image file not found!"
+         style=" max-width: 300px; max-height: 300px;object-fit: contain;display: block"
+         onclick="">
+    <span style="font-size: larger">{{imgurl[1] | safe}}</span>
+</a>
+{% endfor %}
+
+{% if imgurls|length == 0 %}
+<h3 style="color: #a81f1f">No images were found for the given query</h3>
+{% endif %}
+
+<h1 style="background-color: aliceblue; padding: 5px">Upload:</h1>
+<form action='{{url_for("api.post_picture_web")}}' enctype="multipart/form-data" method="post">
+    <label for="file">Upload files: </label>
+    <input type="file" name="file" id="file" multiple>
+    <br>
+    <label for="flush-check">Automatically flush search index?</label>
+    <input type="checkbox" id="flush-check" name="flush">
+    <br>
+    <input type="submit">
+</form>
+
+<h1 style="background-color: aliceblue; padding: 5px">Search:</h1>
+<form action="{{url_for('public.search_picture')}}" method="get" enctype="application/x-www-form-urlencoded">
+    <label for="query">Type your search query here</label>
+    <input type="text" id="query" name="query"/>
+    <br>
+    <input type="submit">
+</form>
+
+<h1 style="background-color: aliceblue; padding: 5px">Get image by name:</h1>
+<form action="{{url_for('api.img_by_name')}}">
+    <label for="image-id1">Name of image to retrieve:</label>
+    <input id="image-id1" name="name">
+    <input type="submit">
+</form>
+</body>
+</html>

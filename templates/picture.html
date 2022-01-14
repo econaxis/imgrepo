@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+
+<img src="{{url_for('api.img_data', id = id)}}" alt="Image file not found!" style="max-width: 90vw; max-height: 90vh; object-fit: contain">
+
+<form action="{{url_for('api.delete_image')}}">
+    <input type="hidden" name="id" value="{{id}}">
+    <input type="submit" value="Delete image?">
+</form>
+<p>Filename: <b>{{filename}}</b></p>
+<pre style="white-space: pre-wrap">{{description}}</pre>
+
+
+</body>
+</html>
