@@ -92,6 +92,9 @@ These were the interesting problems I encountered. I'd love to talk more about t
 `DB.py`: Database/search engine handles
 `picture.py`: Picture processing, thumbnail generation
 
+`table_manager.py`: Handles Python-Rust FFI type conversions and checking
+`search_lib.py`: Handles Python-C++ FFI type conversions and checking
+
 ## Next Steps
 
 The DB and search engine handles are not mutex-protected. The next step is to implement thread-safety so Flask can run
