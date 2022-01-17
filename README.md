@@ -1,4 +1,4 @@
-# Shopify Developer Challenge - Image Repository
+# Image Repository
 
 Image repository which allows users to store, browse, delete, and search for images. 
 
