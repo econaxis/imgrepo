@@ -51,7 +51,7 @@ def post_image_test(app):
     with app.test_client() as client:
         stored = {}
         for _ in range(0, 1000):
-            content = random.randbytes(100)
+            content = random.randbytes(2000)
             id = int(
                 client.post(
                     "/post-picture-simple",
@@ -64,7 +64,7 @@ def post_image_test(app):
             )
             stored[id] = content
 
-        DB.tbm.flush()
+        # DB.tbm.flush()
         print("FIRST N", DB.tbm.load_first_n(10))
         for id, content in stored.items():
             received = client.get("/img_data", query_string={"id": id}).data

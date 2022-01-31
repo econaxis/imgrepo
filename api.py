@@ -5,7 +5,6 @@ import flask
 from flask import Blueprint, request
 
 import DB
-from main import all_pictures
 from picture import post_picture, generate_thumbnail, generate_most_similar
 
 api = Blueprint("api", __name__)
@@ -60,10 +59,9 @@ def post_picture_web():
         )
         response += f"Posted picture {file_stream.filename} to {id}<br><br>"
 
-    if request.form.get("flush"):
-        print("auto flushing")
-        flush_search()
-    return all_pictures()
+    print("auto flushing")
+    flush_search()
+    return flask.redirect(flask.url_for('public.all_pictures'))
 
 
 @api.route("/delete")
@@ -71,7 +69,12 @@ def delete_image():
     id = int(request.args["id"])
     print("Deleting image ", id)
     DB.tbm.store(id, "deleted.jpg", "null", b"blank image")
+    flush_db()
     return flask.redirect(flask.url_for('public.all_pictures'))
+
+
+def flush_db():
+    DB.tbm.flush()
 
 
 @api.route("/flush-search")

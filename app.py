@@ -20,7 +20,8 @@ def remove_files_from_previous():
 
 
 def init_search():
-    max_key = 0
+    max_key = len(DB.tbm.exec_sql("SELECT * FROM images"))
+    print("Max key: ", max_key)
     if os.path.exists("testfile/frequencies-main"):
         start_prefix = "main"
     else:
@@ -40,17 +41,18 @@ app.config["TESTING"] = True
 app.config["PROPAGATE_EXCEPTIONS"] = True
 app.register_blueprint(public, url_prefix="/")
 app.register_blueprint(api)
-# reset()
-# tests.search_image_test(app)
-# reset()
-# tests.post_image_test(app)
-# reset()
-# # tests.overall_test(app)
-# reset()
-# tests.test_delete_image(app)
-# tests.test_persistence(app)
-
-init_search()
+#reset()
+#tests.search_image_test(app)
+#reset()
+#tests.post_image_test(app)
+#reset()
+## tests.overall_test(app)
+## reset()
+#tests.test_delete_image(app)
+#reset()
+#tests.test_persistence(app)
+#
 # init_search()
 # tests.fill_with_images(app)
-app.run(debug=True, threaded=False)
+init_search()
+app.run(debug=False, threaded=False)

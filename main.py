@@ -34,7 +34,6 @@ def all_pictures():
         if i.description == b"null":
             continue
 
-        print(i.description)
         imgurls.append((i.id, i.filename))
     return flask.render_template("search-results.html", imgurls=imgurls)
 
@@ -54,11 +53,13 @@ def search_picture():
         if a.scores[id] < 4:
             continue
         file = DB.tbm.get(id, 0b0111)
+        if not json.loads(file.description):
+            continue
         matched_words = []
         for match, mlen in a.matches[id]:
-            matched_words.append(
-                json.loads(file.description)["synonyms_desc"][match: match + mlen]
-            )
+                matched_words.append(
+                    json.loads(file.description)["synonyms_desc"][match: match + mlen]
+                )
 
         caption_string = f"<b>{file.filename}</b><br>Matched {','.join(matched_words)}"
         imgurls.append((id, caption_string))

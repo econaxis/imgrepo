@@ -19,7 +19,6 @@ MODEL = KeyedVectors.load("glove.bin")
 
 
 def generate_most_similar(img) -> [str]:
-    # return ["snow", "aline", "mountain", "food"]
     tags = [t.name for t in computervision_client.tag_image_in_stream(img).tags]
     tags_knn = list(filter(lambda k: MODEL.has_index_for(k), tags))
     synonyms = MODEL.most_similar(positive=tags_knn, topn=80)
@@ -28,7 +27,7 @@ def generate_most_similar(img) -> [str]:
 
 def generate_thumbnail(img):
     with Image.open(io.BytesIO(img)).convert("RGB") as im:
-        im.thumbnail((256, 256))
+        im.thumbnail((512, 512))
         out = io.BytesIO()
         im.save(out, format="JPEG")
         out.seek(0)
@@ -37,6 +36,7 @@ def generate_thumbnail(img):
 
 def post_picture(file, description, filename, mimetype):
     id = DB.SEARCH.append_file(description)
+    print("Posting to ", id)
 
     db_data = dict(synonyms_desc=description, filename=filename, mimetype=mimetype)
     DB.tbm.store(id, filename, json.dumps(db_data), file)
