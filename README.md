@@ -1,6 +1,8 @@
-# Shopify Developer Challenge - Image Repository
+# Image Repository
 
-Image repository which allows users to store, browse, delete, and search for images. [Video](fdsa)
+Image repository which allows users to store, browse, delete, and search for images. 
+
+[**Youtube Video**](https://youtu.be/wVyzkAw-C0s)
 
 ![image](start-0.png)
 
@@ -89,6 +91,9 @@ These were the interesting problems I encountered. I'd love to talk more about t
 `api.py`: Private API endpoints
 `DB.py`: Database/search engine handles
 `picture.py`: Picture processing, thumbnail generation
+
+`table_manager.py`: Handles Python-Rust FFI type conversions and checking
+`search_lib.py`: Handles Python-C++ FFI type conversions and checking
 
 ## Next Steps
 
